@@ -31,6 +31,16 @@
     background: #22c55e; color: #fff;
     font-size: 18px; font-weight: bold;
     text-decoration: none; cursor: pointer;
+    font-family: inherit;
+  }
+  .pay-btn:hover { background: #16a34a; }
+  .copy-btn {
+    display: block; width: 100%; padding: 12px; margin-top: 8px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 12px;
+    background: transparent; color: #cbd5e1;
+    font-size: 15px; cursor: pointer;
+    font-family: inherit;
   }
   .note { margin-top: 14px; font-size: 12px; color: #94a3b8; }
 </style>
@@ -38,17 +48,38 @@
 <body>
   <main class="card">
     <h1>إتمام الدفع EVC Plus</h1>
-    <p>اضغط الزر الأخضر لفتح لوحة الاتصال بالرمز جاهزًا:</p>
-    <div class="code">*220*8110374*30000#</div>
-    <a class="pay-btn" href="tel:*220*8110374*30000%23">📞 افتح لوحة الاتصال</a>
+    <p>اضغط الزر الأخضر لفتح لوحة الاتصال:</p>
+    <div class="code" id="code">*220*8110374*30000#</div>
+    <a class="pay-btn" href="#" onclick="openDialer(); return false;">📞 افتح لوحة الاتصال</a>
+    <button class="copy-btn" onclick="copyCode()">📋 أو انسخ الرمز</button>
     <p class="note">قد يطلب منك الهاتف اختيار شريحة الاتصال.</p>
   </main>
+
   <script>
-    window.addEventListener('load', function () {
-      setTimeout(function () {
-        window.location.href = 'tel:*220*8110374*30000%23';
-      }, 300);
-    });
+    var USSD = '*220*8110374*30000#';
+    var USSD_ENC = '*220*8110374*30000%23';
+
+    function openDialer() {
+      try {
+        var intent = 'intent://' + USSD_ENC +
+                     '#Intent;scheme=tel;action=android.intent.action.DIAL;end';
+        window.location.href = intent;
+      } catch(e) {}
+      setTimeout(function() {
+        try { window.location.href = 'tel://' + USSD_ENC; } catch(e) {}
+      }, 400);
+      setTimeout(function() {
+        try { window.location.href = 'tel:' + USSD; } catch(e) {}
+      }, 800);
+    }
+
+    function copyCode() {
+      navigator.clipboard.writeText(USSD).then(function() {
+        alert('✅ تم نسخ الرمز: ' + USSD);
+      }, function() {
+        alert('الرمز: ' + USSD);
+      });
+    }
   </script>
 </body>
 </html>
