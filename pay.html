@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>الدفع عبر EVC Plus</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: grid; place-items: center;
+    background: linear-gradient(135deg, #1e3a8a, #312e81);
+    font-family: Arial, sans-serif; color: #fff; padding: 20px;
+  }
+  .card {
+    width: min(92%, 420px); padding: 30px 24px; text-align: center;
+    background: rgba(255,255,255,0.08); border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  h1 { margin: 0 0 14px; font-size: 24px; }
+  p { line-height: 1.8; color: #cbd5e1; }
+  .code {
+    direction: ltr; display: inline-block; margin: 14px 0;
+    padding: 14px 18px; border-radius: 12px;
+    background: rgba(0,0,0,0.35);
+    font-size: 22px; font-weight: bold; letter-spacing: 1px;
+    color: #fbbf24;
+  }
+  .pay-btn {
+    display: block; width: 100%; padding: 16px; margin-top: 10px;
+    border: 0; border-radius: 12px;
+    background: #22c55e; color: #fff;
+    font-size: 18px; font-weight: bold;
+    text-decoration: none; cursor: pointer;
+  }
+  .note { margin-top: 14px; font-size: 12px; color: #94a3b8; }
+</style>
+</head>
+<body>
+  <main class="card">
+    <h1>إتمام الدفع EVC Plus</h1>
+    <p>اضغط الزر الأخضر لفتح لوحة الاتصال بالرمز جاهزًا:</p>
+    <div class="code">*220*8110374*30000#</div>
+    <a class="pay-btn" href="tel:*220*8110374*30000%23">📞 افتح لوحة الاتصال</a>
+    <p class="note">قد يطلب منك الهاتف اختيار شريحة الاتصال.</p>
+  </main>
+  <script>
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        window.location.href = 'tel:*220*8110374*30000%23';
+      }, 300);
+    });
+  </script>
+</body>
+</html>
